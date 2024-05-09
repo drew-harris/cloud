@@ -1,5 +1,5 @@
 {
-  "name": "bubble-server",
+  "name": "drewh-cloud-server",
   "version": "1.0.0",
   "exports": {
     ".": {
