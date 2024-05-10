@@ -3,9 +3,20 @@ import {
   Link,
   Outlet,
 } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/router-devtools";
 import { QueryUtilsType } from "../main";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { lazy } from "react";
+
+const TanStackRouterDevtools = import.meta.env.PROD
+  ? () => null // Render nothing in production
+  : lazy(() =>
+      // Lazy load in development
+      import("@tanstack/router-devtools").then((res) => ({
+        default: res.TanStackRouterDevtools,
+        // For Embedded Mode
+        // default: res.TanStackRouterDevtoolsPanel
+      })),
+    );
 
 export const Route = createRootRouteWithContext<{
   queryUtils: QueryUtilsType;

@@ -18,7 +18,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec \"node -r esbuild-register ./src/index.ts\" -e .ts",
     "start": "node -r esbuild-register ./src/index.ts",
-    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js"
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js",
+    "preview": "node dist/index.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.11.1",

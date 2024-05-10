@@ -10,7 +10,7 @@
         "dist/**"
       ]
     },
-    "serve": {
+    "preview": {
       "dependsOn": [
         "build"
       ]
