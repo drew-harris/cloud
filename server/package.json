@@ -1,6 +1,9 @@
 {
   "name": "drewh-cloud-server",
   "version": "1.0.0",
+  "files": [
+    "dist"
+  ],
   "exports": {
     ".": {
       "import": "./src/index.ts",
@@ -14,7 +17,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon --exec \"node -r esbuild-register ./src/index.ts\" -e .ts",
-    "start": "node -r esbuild-register ./src/index.ts"
+    "start": "node -r esbuild-register ./src/index.ts",
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=dist/index.js"
   },
   "dependencies": {
     "@hono/node-server": "^1.11.1",
@@ -29,6 +33,7 @@
     "@types/node": "^20.12.7",
     "@types/pg": "^8.11.6",
     "drizzle-kit": "^0.21.0",
+    "tsconfig": "workspace:*",
     "esbuild": "^0.20.2",
     "esbuild-register": "^3.5.0",
     "nodemon": "^3.1.0",
