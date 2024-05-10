@@ -7,8 +7,7 @@ import { Hono } from "hono";
 import { serve } from "@hono/node-server";
 import { appRouter } from "./trpc";
 
-const app = new Hono();
-
+const app = new Hono().basePath("/api");
 app.get("/", (c) => {
   return c.json({ hi: "hello" });
 });

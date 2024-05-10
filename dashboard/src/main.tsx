@@ -12,10 +12,14 @@ import ReactDOM from "react-dom/client";
 import { routeTree } from "./routeTree.gen";
 import { trpc } from "./utils/trpc";
 
+const apiUrl = import.meta.env.PROD
+  ? "https://cloud.drewh.net/api/trpc"
+  : "http://localhost:3000/api/trpc";
+
 const trpcClient = trpc.createClient({
   links: [
     httpBatchLink({
-      url: "http://localhost:3000/trpc",
+      url: apiUrl,
     }),
   ],
 });

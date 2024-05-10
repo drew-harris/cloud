@@ -15,5 +15,7 @@ FROM base AS server
 COPY --from=build /usr/src/app/server/dist /prod/server/dist
 WORKDIR /prod/server
 
+EXPOSE 3000
+
 CMD ["node", "dist/index.js"]
 
