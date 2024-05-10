@@ -1,7 +1,7 @@
 import { publicProcedure, router } from "./trpc";
 export const appRouter = router({
   testRoute: publicProcedure.query(async () => {
-    return "Poopy";
+    return "Drew Was Here";
   }),
   // ...
 });
