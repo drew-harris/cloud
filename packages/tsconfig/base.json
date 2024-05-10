@@ -11,9 +11,11 @@
     "moduleDetection": "force",
     "strict": true,
     "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
     "moduleResolution": "Bundler",
     "module": "ESNext",
-    "rootDir": "./src",
     "outDir": "./dist",
     "noEmit": true,
     "lib": [
