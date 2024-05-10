@@ -12,6 +12,10 @@ app.get("/", (c) => {
   return c.json({ hi: "hello" });
 });
 
+app.get("/health", (c) => {
+  return c.json({ status: "ok" });
+});
+
 app.use("*", cors());
 
 app.use(
