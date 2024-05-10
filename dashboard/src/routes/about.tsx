@@ -13,6 +13,7 @@ function About() {
   return (
     <div>
       <div>About page</div>
+      <div>Wow you really did it github actions works!!!</div>
       <button onClick={doPreload}>Preload special</button>
     </div>
   );
