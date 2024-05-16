@@ -1,11 +1,7 @@
-import {
-  createRootRouteWithContext,
-  Link,
-  Outlet,
-} from "@tanstack/react-router";
-import { QueryUtilsType } from "../main";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { createRootRouteWithContext, Outlet } from "@tanstack/react-router";
 import { lazy } from "react";
+import { QueryUtilsType } from "../main";
 
 const TanStackRouterDevtools = import.meta.env.PROD
   ? () => null // Render nothing in production
@@ -23,15 +19,6 @@ export const Route = createRootRouteWithContext<{
 }>()({
   component: () => (
     <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" preload="intent" className="[&.active]:font-bold">
-          Home
-        </Link>
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-      </div>
-      <hr />
       <Outlet />
       <TanStackRouterDevtools />
       <ReactQueryDevtools />

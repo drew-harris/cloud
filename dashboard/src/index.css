@@ -3,8 +3,18 @@
 @tailwind utilities;
 
 :root {
-  --halftone-shadow-distance: 0.8rem;
+  --halftone-shadow-distance: 1.0rem;
   --halftone-dot-size: 0.05rem;
+}
+
+.halftone-d-2 {
+  --halftone-shadow-distance: 0.2rem; /* Adjust this value as needed */
+}
+.halftone-d-4 {
+  --halftone-shadow-distance: 0.4rem; /* Adjust this value as needed */
+}
+.halftone-d-6 {
+  --halftone-shadow-distance: 0.6rem; /* Adjust this value as needed */
 }
 
 .halftone-shadow::before {
@@ -13,14 +23,6 @@
     background-image: radial-gradient(circle at center, #000 var(--halftone-dot-size), transparent 0), radial-gradient(circle at center, #000 var(--halftone-dot-size), transparent 0);
     background-size: .2rem .2rem;
     background-position: 0 0,.1rem .1rem;
-}
-
-.halftone-offset::before {
-}
-
-.halftone-shadow::after {
-    background: inherit;
-    border-radius: inherit;
 }
 
 .halftone-shadow::after {
@@ -37,8 +39,6 @@
     right: 0;
     bottom: 0;
 }
-
-
 
 .halftone-shadow {
   position: relative;

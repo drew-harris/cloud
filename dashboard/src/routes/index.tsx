@@ -3,15 +3,11 @@ import { trpc } from "../utils/trpc";
 
 export const Route = createFileRoute("/")({
   component: Index,
-  pendingComponent: Loading,
+  wrapInSuspense: true,
   loader: async ({ context }) => {
     await context.queryUtils.testRoute.ensureData();
   },
 });
-
-function Loading() {
-  return <div>Loading...</div>;
-}
 
 function Index() {
   const [test] = trpc.testRoute.useSuspenseQuery();
