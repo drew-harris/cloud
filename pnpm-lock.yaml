@@ -115,7 +115,7 @@ importers:
         version: 1.11.1
       '@hono/trpc-server':
         specifier: ^0.3.0
-        version: 0.3.0(@trpc/server@11.0.0-rc.366)(hono@4.3.3)
+        version: 0.3.0(@trpc/server@11.0.0-rc.366)(hono@4.3.7)
       '@trpc/server':
         specifier: 11.0.0-rc.366
         version: 11.0.0-rc.366
@@ -127,7 +127,7 @@ importers:
         version: 0.30.10(@types/pg@8.11.6)(@types/react@18.3.1)(pg@8.11.5)(react@18.3.1)
       hono:
         specifier: ^4.2.9
-        version: 4.3.3
+        version: 4.3.7
       pg:
         specifier: ^8.11.5
         version: 8.11.5
@@ -1588,8 +1588,8 @@ packages:
   heap@0.2.7:
     resolution: {integrity: sha512-2bsegYkkHO+h/9MGbn6KWcE45cHZgPANo5LXF7EvWdT0yT2EguSVO1nDgU5c8+ZOPwp2vMNa7YFsJhVcDR9Sdg==}
 
-  hono@4.3.3:
-    resolution: {integrity: sha512-LDa1n/aLYK4CsZQyjQpFiaQgxiXCZp0WfcfliinQOH1Lqt4mIOvyw4qjmHihpKXsuXhkQHfHU2Erysp6oEdnVA==}
+  hono@4.3.7:
+    resolution: {integrity: sha512-GXlsGnCAwGosu+COwYyYC8MwOY2L6Ihg9V1znYdMD8DHCJl+13Nk4o8dsBYJpae4oujjw24jBaITuYWVq2+V8Q==}
     engines: {node: '>=16.0.0'}
 
   ignore-by-default@1.0.1:
@@ -2772,10 +2772,10 @@ snapshots:
 
   '@hono/node-server@1.11.1': {}
 
-  '@hono/trpc-server@0.3.0(@trpc/server@11.0.0-rc.366)(hono@4.3.3)':
+  '@hono/trpc-server@0.3.0(@trpc/server@11.0.0-rc.366)(hono@4.3.7)':
     dependencies:
       '@trpc/server': 11.0.0-rc.366
-      hono: 4.3.3
+      hono: 4.3.7
 
   '@humanwhocodes/config-array@0.11.14':
     dependencies:
@@ -3671,7 +3671,7 @@ snapshots:
 
   heap@0.2.7: {}
 
-  hono@4.3.3: {}
+  hono@4.3.7: {}
 
   ignore-by-default@1.0.1: {}
 
