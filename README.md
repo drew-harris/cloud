@@ -6,3 +6,4 @@
 
 ## Later:
 - [ ] Share eslint config on whole project
+- [ ] T3 env setup

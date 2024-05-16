@@ -14,7 +14,7 @@ import { trpc } from "./utils/trpc";
 
 const apiUrl = import.meta.env.PROD
   ? "https://cloud.drewh.net/api/trpc"
-  : "http://localhost:3000/trpc";
+  : "http://localhost:3000/api/trpc";
 
 const trpcClient = trpc.createClient({
   links: [

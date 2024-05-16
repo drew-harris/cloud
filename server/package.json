@@ -10,8 +10,8 @@
       "require": "./src/index.ts"
     },
     "./trpc": {
-      "import": "./src/trpc/index.ts",
-      "require": "./src/trpc/index.ts"
+      "import": "./src/trpc/app.ts",
+      "require": "./src/trpc/app.ts"
     }
   },
   "scripts": {
@@ -24,20 +24,26 @@
   "dependencies": {
     "@hono/node-server": "^1.11.1",
     "@hono/trpc-server": "^0.3.0",
+    "@lucia-auth/adapter-drizzle": "^1.0.7",
+    "@t3-oss/env-core": "^0.10.1",
     "@trpc/server": "11.0.0-rc.366",
+    "arctic": "^1.8.1",
     "dotenv": "^16.4.5",
     "drizzle-orm": "^0.30.10",
     "hono": "^4.2.9",
-    "pg": "^8.11.5"
+    "lucia": "^3.2.0",
+    "pg": "^8.11.5",
+    "postgres": "^3.4.4",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
     "@types/pg": "^8.11.6",
     "drizzle-kit": "^0.21.0",
-    "tsconfig": "workspace:*",
     "esbuild": "^0.20.2",
     "esbuild-register": "^3.5.0",
     "nodemon": "^3.1.0",
+    "tsconfig": "workspace:*",
     "typescript": "^5.4.5"
   }
 }
