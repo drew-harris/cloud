@@ -23,6 +23,7 @@ const trpcClient = trpc.createClient({
     }),
   ],
 });
+
 const queryClient = new QueryClient();
 
 export const queryUtils = createTRPCQueryUtils({

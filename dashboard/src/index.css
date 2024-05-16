@@ -1,3 +1,49 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --halftone-shadow-distance: 0.8rem;
+  --halftone-dot-size: 0.05rem;
+}
+
+.halftone-shadow::before {
+    top: var(--halftone-shadow-distance) !important;
+    transform: translate3d(var(--halftone-shadow-distance),var(--halftone-shadow-distance),0);
+    background-image: radial-gradient(circle at center, #000 var(--halftone-dot-size), transparent 0), radial-gradient(circle at center, #000 var(--halftone-dot-size), transparent 0);
+    background-size: .2rem .2rem;
+    background-position: 0 0,.1rem .1rem;
+}
+
+.halftone-offset::before {
+}
+
+.halftone-shadow::after {
+    background: inherit;
+    border-radius: inherit;
+}
+
+.halftone-shadow::after {
+    background: inherit;
+    border-radius: inherit;
+}
+
+.halftone-shadow::after, .halftone-shadow::before {
+    content: "";
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+.halftone-shadow {
+  position: relative;
+}
+
+legend, fieldset {
+  padding: 0;
+}
