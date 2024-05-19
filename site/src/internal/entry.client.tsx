@@ -8,16 +8,14 @@ import { trpc } from "~/internal/trpc";
 
 void render();
 
-const apiUrl = import.meta.env.PROD
-  ? "https://cloud.drewh.net/api/trpc"
-  : "http://localhost:3000/api/trpc";
-
 async function render() {
   const queryClient = new QueryClient();
   const trpcClient = trpc.createClient({
     links: [
       httpBatchLink({
-        url: apiUrl,
+        url: import.meta.env.PROD
+          ? "https://drewh.cloud/api/trpc"
+          : "http://localhost:3000/api/trpc",
       }),
     ],
   });
