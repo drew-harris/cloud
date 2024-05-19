@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.debug {
+  outline: 1px solid red;
+}
+
 :root {
   --halftone-shadow-distance: 1.0rem;
   --halftone-dot-size: 0.05rem;
