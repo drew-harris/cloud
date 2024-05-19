@@ -7,6 +7,7 @@ import { handlePage } from "./internal/serverPageHandler";
 import { github, lucia } from "./auth";
 import { db } from "./db";
 import { authMiddleware, authRoutes } from "./auth/authRoutes";
+import { User } from "lucia";
 
 declare module "hono" {
   interface Env {
@@ -14,6 +15,7 @@ declare module "hono" {
       lucia: typeof lucia;
       github: typeof github;
       db: typeof db;
+      user: User | null;
     };
   }
 }
