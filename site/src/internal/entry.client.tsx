@@ -14,8 +14,8 @@ async function render() {
     links: [
       httpBatchLink({
         url: import.meta.env.PROD
-          ? "https://drewh.cloud/api/trpc"
-          : "http://localhost:3000/api/trpc",
+          ? "https://drewh.cloud/trpc"
+          : "http://localhost:3000/trpc",
       }),
     ],
   });

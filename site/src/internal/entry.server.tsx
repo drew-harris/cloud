@@ -10,14 +10,14 @@ import { TRPCErrorResponse } from "@trpc/server/unstable-core-do-not-import";
 import { createTRPCQueryUtils } from "@trpc/react-query";
 import { trpc } from "~/internal/trpc";
 import { appRouter } from "~/trpc/app";
-import { Env } from "hono";
+import { Context, Env } from "hono";
 
 // TODO: Relocate for auth / db (make user accessible)
 const createContext = async () => {
   return {};
 };
 
-export async function render(req: Request, context: Env["Variables"]) {
+export async function render(req: Request, context: Context<Env>) {
   const assets = await assetsForRequest(req.url);
 
   const url = new URL(req.url);
@@ -34,7 +34,10 @@ export async function render(req: Request, context: Env["Variables"]) {
           observable((observer) => {
             // LMAO
             (async () => {
-              return context;
+              return {
+                ...context.var,
+                honoContext: context,
+              };
             })()
               .then((ctx) => {
                 return callProcedure({

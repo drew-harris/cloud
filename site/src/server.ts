@@ -40,6 +40,7 @@ server.use(
     createContext(_opts, c) {
       return {
         ...c.var,
+        honoContext: c,
       };
     },
   }),
