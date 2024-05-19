@@ -9,6 +9,7 @@ const InputOTP = React.forwardRef<
   React.ComponentPropsWithoutRef<typeof OTPInput>
 >(({ className, containerClassName, ...props }, ref) => (
   <OTPInput
+    inputMode="text"
     spellCheck="false"
     ref={ref}
     containerClassName={cn(

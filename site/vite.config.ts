@@ -21,6 +21,9 @@ export default defineConfig(({ isSsrBuild, command }) => ({
       routerAdapter: tanstackRouterAdapter(),
     }),
   ],
+  server: {
+    host: "0.0.0.0",
+  },
   build: {
     rollupOptions: {
       output: {
