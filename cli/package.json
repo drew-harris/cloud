@@ -9,7 +9,6 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "drewh-cloud-server": "workspace:*",
     "esbuild": "^0.20.2",
     "esbuild-register": "^3.5.0",
     "tsconfig": "workspace:*",

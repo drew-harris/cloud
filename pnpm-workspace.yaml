@@ -1,5 +1,4 @@
 packages:
   - "cli"
-  - "server"
-  - "dashboard"
+  - "site"
   - "packages/*"
