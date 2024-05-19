@@ -14,3 +14,4 @@ yarn.lock
 bun.lockb
 .env
 
+.DS_Store
