@@ -3,7 +3,7 @@ import { Context, Env, Hono, Next } from "hono";
 import { nanoid } from "nanoid";
 import { getCookie, setCookie } from "hono/cookie";
 import { GithubUser } from "./githubType";
-import { TB_User } from "~/db/schema";
+import { TB_SignUpCode, TB_User } from "~/db/schema";
 import { eq } from "drizzle-orm";
 
 export const authMiddleware = async (c: Context<Env>, next: Next) => {
@@ -30,6 +30,28 @@ export const authMiddleware = async (c: Context<Env>, next: Next) => {
 
 export const authRoutes = new Hono<Env>();
 authRoutes.get("/login", async (c) => {
+  let betaCode = c.req.query("betacode");
+
+  // Verify the beta code
+  if (!betaCode || betaCode.length != 6) {
+    c.status(400);
+    return c.text("Invalid beta code");
+  }
+
+  // Check beta code in database
+  betaCode = betaCode.toUpperCase().trim();
+
+  const match = await c.var.db
+    .select()
+    .from(TB_SignUpCode)
+    .where(eq(TB_SignUpCode.code, betaCode))
+    .then((a) => a.at(0));
+
+  if (!match) {
+    c.status(400);
+    return c.text("Invalid beta code");
+  }
+
   const state = generateState();
   const url = await c.var.github.createAuthorizationURL(state);
 
@@ -42,7 +64,7 @@ authRoutes.get("/login", async (c) => {
   });
 
   // Redirect to url
-  return c.redirect(url.toString());
+  return c.text(url.toString());
 });
 
 // Callback url

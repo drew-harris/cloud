@@ -7,8 +7,7 @@ export const handlePage = async (c: Context) => {
   c.header("Content-Type", "text/html; charset=utf-8");
   return stream(c, async (stream) => {
     try {
-      // @ts-expect-error Hono
-      const { app, router } = await entry.render(c.req.raw, c.var);
+      const { app, router } = await entry.render(c.req.raw, c);
       // TODO: Getting closer
       // if (router.history.location.href != c.req.raw.url) {
       //   console.log("Redirecting to", router.history.location.href);

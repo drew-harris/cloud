@@ -1,4 +1,5 @@
 import { tanstackRouterAdapter } from "@ssrx/plugin-tanstack-router/adapter";
+import path from "path";
 import { ssrx } from "@ssrx/vite/plugin";
 import { TanStackRouterVite } from "@tanstack/router-vite-plugin";
 import react from "@vitejs/plugin-react";
@@ -28,6 +29,11 @@ export default defineConfig(({ isSsrBuild, command }) => ({
         manualChunks:
           !isSsrBuild && command === "build" ? manualChunks : undefined,
       },
+    },
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 }));

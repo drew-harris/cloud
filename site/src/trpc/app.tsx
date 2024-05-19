@@ -1,3 +1,4 @@
+import { authRouter } from "./authRouter";
 import { publicProcedure, router } from "./base";
 
 export const appRouter = router({
