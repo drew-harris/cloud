@@ -33,7 +33,7 @@ function LoginPage() {
 
   return (
     <DitherBox
-      className="flex md:max-w-md flex-col gap-2 !pb-4 items-center justify-items-center p-2 mx-auto"
+      className="flex md:max-w-md flex-col gap-2 !pb-4 items-center justify-items-center p-2 md:px-5 mx-auto"
       title="Log in to the beta"
     >
       <div className="font-mono">Enter your beta sign up code.</div>
