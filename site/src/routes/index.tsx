@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
 function IndexComponent() {
   return (
     <>
-      <div className="fixed bg-gray-500 text-white p-1 px-2 top-8 right-8">
+      <div className="fixed text-black p-1 px-2 top-8 right-8">
         <Link to="/login" className="underline">
           Login
         </Link>
