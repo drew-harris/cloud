@@ -33,7 +33,7 @@ function RootComponent() {
         {headTags?.()}
       </head>
 
-      <body className="">
+      <body className="bg-[#f5f5fa]">
         <Outlet />
 
         {import.meta.env.DEV && (
