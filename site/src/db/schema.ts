@@ -1,8 +1,9 @@
 import { integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
 
-export const TB_User = pgTable("user", {
+export const TB_User = pgTable("users", {
   id: text("id").primaryKey(),
   githubId: integer("github_id").notNull(),
+  name: text("name"),
   githubUsername: text("github_username").notNull(),
   githubEmail: text("github_email").notNull(),
   plan: text("plan").notNull().default("demo"),
@@ -14,7 +15,7 @@ export const TB_User = pgTable("user", {
     .defaultNow(),
 });
 
-export const TB_SignUpCode = pgTable("sign_up_code", {
+export const TB_SignUpCode = pgTable("sign_up_codes", {
   code: text("code").notNull().primaryKey(),
   createdAt: timestamp("created_at", {
     withTimezone: true,
@@ -24,7 +25,7 @@ export const TB_SignUpCode = pgTable("sign_up_code", {
     .defaultNow(),
 });
 
-export const TB_Session = pgTable("session", {
+export const TB_Session = pgTable("sessions", {
   id: text("id").primaryKey(),
   userId: text("user_id")
     .notNull()

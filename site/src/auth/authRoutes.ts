@@ -123,8 +123,9 @@ authRoutes.get("/callback", async (c) => {
       .values([
         {
           githubEmail: githubUser.email,
+          name: githubUser.name,
           githubId: githubUser.id,
-          githubUsername: githubUser.name,
+          githubUsername: githubUser.login,
           id: nanoid(5),
         },
       ])

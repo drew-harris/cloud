@@ -17,16 +17,20 @@ export const Route = createFileRoute("/_auth/login/")({
 function LoginPage() {
   const [codeInput, setCodeInput] = useState("");
   const [errorText, setErrorText] = useState("");
+  const [isLoadingRedirect, setIsLoadingRedirect] = useState(false);
 
   const goToLogin = async (e: FormEvent) => {
     e.preventDefault();
     if (codeInput.length < 6) return;
+    setIsLoadingRedirect(true);
 
     const response = await fetch("/auth/login?betacode=" + codeInput);
     if (response.status === 200) {
       window.location.href = await response.text();
+      return;
     }
 
+    setIsLoadingRedirect(false);
     const error = await response.text();
     setErrorText(error);
   };
@@ -59,7 +63,11 @@ function LoginPage() {
         {errorText && (
           <div className="text-red-500 text-center py-2">{errorText}</div>
         )}
-        <Button type="submit" disabled={codeInput.length < 6} variant="outline">
+        <Button
+          type="submit"
+          disabled={codeInput.length < 6 || isLoadingRedirect}
+          variant="outline"
+        >
           Log In With Github
         </Button>
       </form>
