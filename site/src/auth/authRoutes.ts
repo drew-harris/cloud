@@ -132,14 +132,14 @@ authRoutes.get("/callback", async (c) => {
       .then((a) => a.at(0));
 
     if (!newUser) {
-      return c.redirect("/login");
+      return c.redirect("/login/error");
     }
 
     const session = await c.var.lucia.createSession(newUser.id, {});
 
     setCookie(
       c,
-      "session",
+      c.var.lucia.sessionCookieName,
       c.var.lucia.createSessionCookie(session.id).serialize(),
       {
         path: "/",
@@ -149,6 +149,8 @@ authRoutes.get("/callback", async (c) => {
         sameSite: "Lax",
       },
     );
+
+    c.redirect("/dashboard");
 
     // return res
     // 	.appendHeader("Set-Cookie", lucia.createSessionCookie(session.id).serialize())
