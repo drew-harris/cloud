@@ -72,11 +72,14 @@ export async function render(req: Request, context: Context<Env>) {
         headTags: () => renderAssets(assets.headAssets),
         bodyTags: () => renderAssets(assets.bodyAssets),
         trpc: queryUtils,
+        user: context.var.user,
+        isServer: true,
       },
       history: memoryHistory,
       dehydrate: () => {
         return {
           queryClient: dehydrate(queryClient),
+          user: context.var.user,
         };
       },
     },

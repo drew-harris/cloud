@@ -35,3 +35,28 @@ export const TB_Session = pgTable("sessions", {
     mode: "date",
   }).notNull(),
 });
+
+export const TB_Project = pgTable("projects", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => TB_User.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "date",
+  })
+    .notNull()
+    .defaultNow(),
+});
+
+export const TB_Service = pgTable("services", {
+  id: text("id").primaryKey().unique(),
+  type: text("id").notNull(),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "date",
+  })
+    .notNull()
+    .defaultNow(),
+});

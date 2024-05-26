@@ -13,7 +13,8 @@
 import { Route as rootRoute } from './../routes/__root'
 import { Route as AuthImport } from './../routes/_auth'
 import { Route as IndexImport } from './../routes/index'
-import { Route as DashboardIndexImport } from './../routes/dashboard/index'
+import { Route as DashboardDashboardImport } from './../routes/_dashboard/dashboard'
+import { Route as DashboardDashboardIndexImport } from './../routes/_dashboard/dashboard.index'
 import { Route as AuthLoginIndexImport } from './../routes/_auth/login/index'
 import { Route as AuthLoginErrorImport } from './../routes/_auth/login/error'
 
@@ -29,9 +30,14 @@ const IndexRoute = IndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const DashboardIndexRoute = DashboardIndexImport.update({
-  path: '/dashboard/',
+const DashboardDashboardRoute = DashboardDashboardImport.update({
+  path: '/dashboard',
   getParentRoute: () => rootRoute,
+} as any)
+
+const DashboardDashboardIndexRoute = DashboardDashboardIndexImport.update({
+  path: '/',
+  getParentRoute: () => DashboardDashboardRoute,
 } as any)
 
 const AuthLoginIndexRoute = AuthLoginIndexImport.update({
@@ -56,8 +62,8 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
-    '/dashboard/': {
-      preLoaderRoute: typeof DashboardIndexImport
+    '/_dashboard/dashboard': {
+      preLoaderRoute: typeof DashboardDashboardImport
       parentRoute: typeof rootRoute
     }
     '/_auth/login/error': {
@@ -68,6 +74,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginIndexImport
       parentRoute: typeof AuthImport
     }
+    '/_dashboard/dashboard/': {
+      preLoaderRoute: typeof DashboardDashboardIndexImport
+      parentRoute: typeof DashboardDashboardImport
+    }
   }
 }
 
@@ -76,7 +86,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   AuthRoute.addChildren([AuthLoginErrorRoute, AuthLoginIndexRoute]),
-  DashboardIndexRoute,
+  DashboardDashboardRoute.addChildren([DashboardDashboardIndexRoute]),
 ])
 
 /* prettier-ignore-end */

@@ -5,6 +5,9 @@ import { hydrateRoot } from "react-dom/client";
 import { createRouter } from "~/internal/router";
 import { createTRPCQueryUtils } from "@trpc/react-query";
 import { trpc } from "~/internal/trpc";
+import { type User } from "lucia";
+
+let dehydrationUser: User | null = null;
 
 void render();
 
@@ -27,9 +30,13 @@ async function render() {
     {
       context: {
         trpc: queryUtils,
+        user: null,
+        isServer: false,
       },
       hydrate: (dehydrated: any) => {
+        console.log(dehydrated);
         hydrate(queryClient, dehydrated["queryClient"]);
+        dehydrationUser = dehydrated["user"];
       },
     },
     queryClient,
@@ -43,5 +50,17 @@ async function render() {
   // }
 
   router.hydrate();
+
+  // Get the current context
+  const context = {
+    trpc: queryUtils,
+    user: dehydrationUser,
+    isServer: false,
+  };
+
+  router.update({
+    context,
+  });
+
   hydrateRoot(document, <RouterProvider router={router} />);
 }

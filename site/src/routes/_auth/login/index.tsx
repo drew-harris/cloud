@@ -1,4 +1,4 @@
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { FormEvent, useState } from "react";
 import { DitherBox } from "../../../components/DitherBox";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";

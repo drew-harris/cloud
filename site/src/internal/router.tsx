@@ -5,11 +5,14 @@ import { CreateQueryUtils } from "@trpc/react-query/shared";
 import { AppRouter } from "../trpc/app";
 import { routeTree } from "./routeTree.gen";
 import { trpc } from "./trpc";
+import { type User } from "lucia";
 
 export type RootRouterContext = {
   headTags?: () => React.ReactNode;
   bodyTags?: () => React.ReactNode;
   trpc: CreateQueryUtils<AppRouter>;
+  user: User | null;
+  isServer: boolean;
   // OTHER STUFF LIKE AUTH STATE CAN GO HERE!!!
 };
 
