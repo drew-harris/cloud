@@ -1,4 +1,7 @@
 packages:
   - "cli"
   - "site"
+  - "shared"
+  - "worker"
+  - "db"
   - "packages/*"

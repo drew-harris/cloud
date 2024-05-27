@@ -3,8 +3,8 @@ import { Context, Env, Hono, Next } from "hono";
 import { nanoid } from "nanoid";
 import { getCookie, setCookie } from "hono/cookie";
 import { GithubUser } from "./githubType";
-import { TB_SignUpCode, TB_User } from "~/db/schema";
 import { eq } from "drizzle-orm";
+import { TB_SignUpCode, TB_User } from "db";
 
 export const authMiddleware = async (c: Context<Env>, next: Next) => {
   const cookie = getCookie(c, c.var.lucia.sessionCookieName);
