@@ -40,7 +40,7 @@ export const github = new GitHub(
   env.GITHUB_CLIENT_SECRET,
   {
     redirectURI: import.meta.env.PROD
-      ? "https://cloud.drewh.net/auth/callback"
+      ? "https://drewh.cloud/auth/callback"
       : "http://localhost:3000/auth/callback",
   },
 );
