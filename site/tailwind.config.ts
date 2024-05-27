@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      colors: {
+        "brand-orange": "#FF5622",
+        "bg-darker": "#DDDDDD",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },

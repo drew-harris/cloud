@@ -45,7 +45,7 @@ jobs:
           tags: ${{secrets.DOCKERHUB_USERNAME}}/cloud-worker:latest
 
   notify-watchtower:
-    needs: [build-server]
+    needs: [build-server, build-worker]
     runs-on: ubuntu-latest
     steps:
       - name: Notify

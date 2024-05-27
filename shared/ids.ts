@@ -7,6 +7,7 @@ const prefixes = {
   user: "us",
   jobs: "job",
   content: "c",
+  projects: "p",
 } as const;
 
 export function createId(prefix: keyof typeof prefixes): string {
