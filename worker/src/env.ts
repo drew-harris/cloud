@@ -1,15 +1,20 @@
 import { createEnv } from "@t3-oss/env-core";
 import { z } from "zod";
-import "dotenv/config";
 
 export const env = createEnv({
   server: {
     DATABASE_URL: z.string().url(),
-    GITHUB_CLIENT_ID: z.string().min(1),
-    GITHUB_CLIENT_SECRET: z.string().min(1),
     REDIS_PASSWORD: z.string(),
     REDIS_HOST: z.string(),
+    QUEUE_NAME: z.string(),
   },
-  runtimeEnv: process.env,
+
+  runtimeEnvStrict: {
+    DATABASE_URL: process.env.DATABASE_URL,
+    REDIS_PASSWORD: process.env.REDIS_PASSWORD,
+    REDIS_HOST: process.env.REDIS_HOST,
+    QUEUE_NAME: process.env.QUEUE_NAME,
+  },
+
   emptyStringAsUndefined: true,
 });

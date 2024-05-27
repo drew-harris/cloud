@@ -1,9 +1,9 @@
 import { Lucia } from "lucia";
 import { DrizzlePostgreSQLAdapter } from "@lucia-auth/adapter-drizzle";
 import { db } from "../db";
-import { TB_Session, TB_User } from "../db/schema";
 import { GitHub } from "arctic";
 import { env } from "../env";
+import { TB_Session, TB_User } from "db";
 
 const adapter = new DrizzlePostgreSQLAdapter(db, TB_Session, TB_User);
 

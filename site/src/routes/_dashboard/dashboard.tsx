@@ -13,9 +13,8 @@ export const Route = createFileRoute("/_dashboard/dashboard")({
 
 function DashboardPage() {
   return (
-    <div className="bg-red-500">
+    <div className="p-8">
       <Outlet />
     </div>
   );
 }
-
