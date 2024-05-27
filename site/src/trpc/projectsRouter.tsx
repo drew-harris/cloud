@@ -1,5 +1,5 @@
 import { TB_Project } from "db";
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 import { createId } from "shared";
 import { z } from "zod";
 import { authedProcedure, router } from "~/trpc/base";
@@ -8,6 +8,7 @@ export const projectsRouter = router({
   createProject: authedProcedure
     .input(z.object({ name: z.string() }))
     .mutation(async ({ ctx, input }) => {
+      console.log("createProject");
       const project = await ctx.db
         .insert(TB_Project)
         .values([
@@ -29,8 +30,8 @@ export const projectsRouter = router({
     const projects = await ctx.db
       .select()
       .from(TB_Project)
-      .where(eq(TB_Project.userId, ctx.user.id));
-
+      .where(eq(TB_Project.userId, ctx.user.id))
+      .orderBy(desc(TB_Project.createdAt));
     return projects;
   }),
 });

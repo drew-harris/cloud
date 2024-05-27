@@ -14,9 +14,14 @@ function ProjectsBar() {
   const [projects] = trpc.projects.myProjects.useSuspenseQuery();
 
   return (
-    <div className="flex gap-2">
-      {projects.map((proj) => (
-        <div key={proj.id}>{proj.name}</div>
+    <div className="flex gap-4 max-w-full flex-wrap ">
+      {projects?.map((proj) => (
+        <div
+          className="bg-white halftone-shadow max-w-56 halftone-d-4 min-h-24 min-w-56 p-4 font-bold flex flex-col border-2 border-black"
+          key={proj.id}
+        >
+          <div className="text-wrap truncate">{proj.name}</div>
+        </div>
       ))}
       <CreateProjectModal />
     </div>

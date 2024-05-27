@@ -1,4 +1,6 @@
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
+import { Suspense } from "react";
+import { trpc } from "~/internal/trpc";
 
 export const Route = createFileRoute("/_dashboard/dashboard")({
   beforeLoad: ({ context }) => {
@@ -20,10 +22,21 @@ function Navbar() {
 }
 
 function Sidebar() {
+  const [projects] = trpc.projects.myProjects.useSuspenseQuery();
+
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-1">
       <div className="font-bold">Projects</div>
-      <div className="text-center opacity-50">You have no projects.</div>
+      {projects.length === 0 && (
+        <div className="text-center opacity-50 pt-4">You have no projects.</div>
+      )}
+      <div className="pl-4">
+        {projects.map((proj) => (
+          <div className="truncate" key={proj.id}>
+            - {proj.name}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
@@ -32,11 +45,13 @@ function DashboardPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <div className="grid-cols-[300px,1fr] grow grid">
+      <div className="grid-cols-[300px,1fr] max-w-[100vw] grow grid">
         <div className="bg-bg-darker p-3">
-          <Sidebar />
+          <Suspense>
+            <Sidebar />
+          </Suspense>
         </div>
-        <div className="p-8">
+        <div className="p-8 max-w-full">
           <Outlet />
         </div>
       </div>

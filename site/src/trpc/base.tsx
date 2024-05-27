@@ -27,8 +27,7 @@ export const authedProcedure = t.procedure.use(async ({ next, ctx }) => {
       message: "Unauthorized",
     });
   }
-  await next();
-  return next({
+  return await next({
     ctx: {
       ...ctx,
       user,
