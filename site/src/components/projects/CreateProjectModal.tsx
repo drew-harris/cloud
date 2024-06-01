@@ -31,7 +31,6 @@ export const CreateProjectModal = () => {
   });
 
   const submit = (e: FormEvent) => {
-    console.log("TESt");
     e.preventDefault();
     if (!name) return;
     if (!createProjectMutation.isPending) {
@@ -39,6 +38,7 @@ export const CreateProjectModal = () => {
         name,
       });
     }
+    setName("");
 
     setOpen(false);
   };
