@@ -1,6 +1,14 @@
-import { Link, createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
+  beforeLoad(opts) {
+    if (opts.context.user?.id) {
+      throw redirect({
+        //@ts-ignore
+        to: "/dashboard",
+      });
+    }
+  },
   component: IndexComponent,
 });
 

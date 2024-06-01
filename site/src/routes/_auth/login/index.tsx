@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { FormEvent, useState } from "react";
 import { DitherBox } from "../../../components/DitherBox";
 import { REGEXP_ONLY_DIGITS_AND_CHARS } from "input-otp";
@@ -11,6 +11,14 @@ import {
 import { Button } from "~/components/ui/button";
 
 export const Route = createFileRoute("/_auth/login/")({
+  beforeLoad(opts) {
+    if (opts.context.user?.id) {
+      throw redirect({
+        // @ts-ignore
+        to: "/dashboard",
+      });
+    }
+  },
   component: LoginPage,
 });
 
