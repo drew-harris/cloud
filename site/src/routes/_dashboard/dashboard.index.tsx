@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { Link, createFileRoute } from "@tanstack/react-router";
 import { Suspense } from "react";
 import { CreateProjectModal } from "~/components/projects/CreateProjectModal";
 import { trpc } from "~/internal/trpc";
@@ -16,12 +16,13 @@ function ProjectsBar() {
   return (
     <div className="flex gap-4 max-w-full flex-wrap ">
       {projects?.map((proj) => (
-        <div
+        <Link
+          to={`/dashboard/projects/${proj.id}`}
           className="bg-white halftone-shadow max-w-56 halftone-d-4 min-h-24 min-w-56 p-4 font-bold flex flex-col border-2 border-black"
           key={proj.id}
         >
           <div className="text-wrap truncate">{proj.name}</div>
-        </div>
+        </Link>
       ))}
       <CreateProjectModal />
     </div>

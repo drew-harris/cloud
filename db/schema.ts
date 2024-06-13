@@ -1,4 +1,5 @@
 import { integer, pgTable, text, timestamp } from "drizzle-orm/pg-core";
+import { DeploymentStatus, JobType, ServiceType } from "shared/types";
 
 export const TB_User = pgTable("users", {
   id: text("id").primaryKey(),
@@ -52,11 +53,32 @@ export const TB_Project = pgTable("projects", {
 
 export const TB_Service = pgTable("services", {
   id: text("id").primaryKey().unique(),
-  type: text("id").notNull(),
+  // TODO: Make the type use the
+  type: text("id").$type<ServiceType>().notNull(),
+  projectId: text("project_id")
+    .notNull()
+    .references(() => TB_Project.id, { onDelete: "cascade" }),
   createdAt: timestamp("created_at", {
     withTimezone: true,
     mode: "date",
   })
     .notNull()
     .defaultNow(),
+});
+
+export const TB_Deploy = pgTable("deployments", {
+  id: text("id").primaryKey(),
+  projectId: text("project_id")
+    .notNull()
+    .references(() => TB_Project.id, { onDelete: "cascade" }),
+  serviceId: text("service_id")
+    .notNull()
+    .references(() => TB_Service.id, { onDelete: "cascade" }),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "date",
+  })
+    .notNull()
+    .defaultNow(),
+  status: text("status").$type<DeploymentStatus>().notNull().default("pending"),
 });

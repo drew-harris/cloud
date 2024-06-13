@@ -12,8 +12,8 @@
       "require": "./index.ts"
     },
     "./types": {
-      "import": "./types.ts",
-      "require": "./types.ts"
+      "import": "./types/index.ts",
+      "require": "./types/index.ts"
     }
   },
   "keywords": [],
@@ -21,7 +21,8 @@
   "license": "ISC",
   "dependencies": {
     "@googleapis/youtube": "^15.0.0",
-    "nanoid": "^5.0.7"
+    "nanoid": "^5.0.7",
+    "zod": "^3.23.8"
   },
   "devDependencies": {
     "typescript": "^5.0.4"

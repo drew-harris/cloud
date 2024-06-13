@@ -17,6 +17,7 @@ import { Route as DashboardDashboardImport } from './../routes/_dashboard/dashbo
 import { Route as DashboardDashboardIndexImport } from './../routes/_dashboard/dashboard.index'
 import { Route as AuthLoginIndexImport } from './../routes/_auth/login/index'
 import { Route as AuthLoginErrorImport } from './../routes/_auth/login/error'
+import { Route as DashboardDashboardProjectsProjectIdImport } from './../routes/_dashboard/dashboard.projects.$projectId'
 
 // Create/Update Routes
 
@@ -50,6 +51,12 @@ const AuthLoginErrorRoute = AuthLoginErrorImport.update({
   getParentRoute: () => AuthRoute,
 } as any)
 
+const DashboardDashboardProjectsProjectIdRoute =
+  DashboardDashboardProjectsProjectIdImport.update({
+    path: '/projects/$projectId',
+    getParentRoute: () => DashboardDashboardRoute,
+  } as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -78,6 +85,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardDashboardIndexImport
       parentRoute: typeof DashboardDashboardImport
     }
+    '/_dashboard/dashboard/projects/$projectId': {
+      preLoaderRoute: typeof DashboardDashboardProjectsProjectIdImport
+      parentRoute: typeof DashboardDashboardImport
+    }
   }
 }
 
@@ -86,7 +97,10 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   AuthRoute.addChildren([AuthLoginErrorRoute, AuthLoginIndexRoute]),
-  DashboardDashboardRoute.addChildren([DashboardDashboardIndexRoute]),
+  DashboardDashboardRoute.addChildren([
+    DashboardDashboardIndexRoute,
+    DashboardDashboardProjectsProjectIdRoute,
+  ]),
 ])
 
 /* prettier-ignore-end */

@@ -1,5 +1,12 @@
-import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
+import {
+  Link,
+  Outlet,
+  createFileRoute,
+  redirect,
+  useRouterState,
+} from "@tanstack/react-router";
 import { Suspense } from "react";
+import { cn } from "~/frontendUtils";
 import { trpc } from "~/internal/trpc";
 
 export const Route = createFileRoute("/_dashboard/dashboard")({
@@ -15,15 +22,19 @@ export const Route = createFileRoute("/_dashboard/dashboard")({
 
 function Navbar() {
   return (
-    <div className="min-h-11 px-4 text-xs flex border-b-2 border-black items-center bg-brand-orange">
+    <Link
+      // @ts-ignore //TODO: Fix
+      to="/dashboard"
+      className="min-h-11 px-4 text-xs flex border-b-2 border-black items-center bg-brand-orange"
+    >
       DHCE
-    </div>
+    </Link>
   );
 }
 
 function Sidebar() {
   const [projects] = trpc.projects.myProjects.useSuspenseQuery();
-
+  const { location } = useRouterState();
   return (
     <div className="flex flex-col gap-1">
       <div className="font-bold">Projects</div>
@@ -32,9 +43,17 @@ function Sidebar() {
       )}
       <div className="pl-4">
         {projects.map((proj) => (
-          <div className="truncate" key={proj.id}>
+          <Link
+            to={`/dashboard/projects/${proj.id}`}
+            className={cn(
+              "truncate",
+              location.pathname === `/dashboard/projects/${proj.id}` &&
+                "underline",
+            )}
+            key={proj.id}
+          >
             - {proj.name}
-          </div>
+          </Link>
         ))}
       </div>
     </div>
