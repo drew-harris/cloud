@@ -7,6 +7,7 @@ const prefixes = {
   user: "us",
   jobs: "job",
   content: "c",
+  waitlist: "waitlist",
   projects: "p",
   services: "sr",
 } as const;

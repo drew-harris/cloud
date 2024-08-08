@@ -82,3 +82,13 @@ export const TB_Deploy = pgTable("deployments", {
     .defaultNow(),
   status: text("status").$type<DeploymentStatus>().notNull().default("pending"),
 });
+
+export const TB_Waitlist = pgTable("waitlist", {
+  id: text("id").primaryKey(),
+  email: text("email").notNull(),
+  note: text("note").default(""),
+  submittedAt: timestamp("submitted_at", {
+    withTimezone: true,
+    mode: "date",
+  }).defaultNow(),
+});

@@ -21,7 +21,7 @@ function IndexComponent() {
         </Link>
       </div>
 
-      <div className="p-[16px] md:max-w-[50%] m-auto mt-28">
+      <div className="p-[16px] md:max-w-[700px] m-auto mt-28">
         <fieldset className="border-2 px-8 border-black flex flex-col halftone-shadow p-[16px] bg-white">
           <legend className="font-bold font-mono text-lg px-2">
             Drewh Cloud Enterprises
@@ -36,11 +36,13 @@ function IndexComponent() {
             <li>Other Stuff</li>
           </div>
 
-          <div className="opacity-65 mt-4 mx-auto">
-            For more info and to join the beta, email{" "}
-            <a className="underline" href="mailto:harrisd@smu.edu">
-              harrisd@smu.edu
-            </a>
+          <div className="flex py-4 mt-4 gap-8 w-full justify-evenly mx-auto">
+            <Link className="underline" to="/waitlist">
+              Join the waitlist
+            </Link>
+            <Link className="underline" to="/waitlist">
+              Get a database
+            </Link>
           </div>
         </fieldset>
       </div>

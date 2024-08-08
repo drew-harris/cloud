@@ -11,6 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './../routes/__root'
+import { Route as WaitlistImport } from './../routes/waitlist'
 import { Route as AuthImport } from './../routes/_auth'
 import { Route as IndexImport } from './../routes/index'
 import { Route as DashboardDashboardImport } from './../routes/_dashboard/dashboard'
@@ -20,6 +21,11 @@ import { Route as AuthLoginErrorImport } from './../routes/_auth/login/error'
 import { Route as DashboardDashboardProjectsProjectIdImport } from './../routes/_dashboard/dashboard.projects.$projectId'
 
 // Create/Update Routes
+
+const WaitlistRoute = WaitlistImport.update({
+  path: '/waitlist',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthRoute = AuthImport.update({
   id: '/_auth',
@@ -69,6 +75,10 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthImport
       parentRoute: typeof rootRoute
     }
+    '/waitlist': {
+      preLoaderRoute: typeof WaitlistImport
+      parentRoute: typeof rootRoute
+    }
     '/_dashboard/dashboard': {
       preLoaderRoute: typeof DashboardDashboardImport
       parentRoute: typeof rootRoute
@@ -97,6 +107,7 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren([
   IndexRoute,
   AuthRoute.addChildren([AuthLoginErrorRoute, AuthLoginIndexRoute]),
+  WaitlistRoute,
   DashboardDashboardRoute.addChildren([
     DashboardDashboardIndexRoute,
     DashboardDashboardProjectsProjectIdRoute,
