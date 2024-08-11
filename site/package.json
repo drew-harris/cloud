@@ -20,6 +20,8 @@
     "@hono/node-server": "^1.11.1",
     "@hono/trpc-server": "^0.3.0",
     "@lucia-auth/adapter-drizzle": "^1.0.7",
+    "@pulumi/postgresql": "^3.11.3",
+    "@pulumi/pulumi": "^3.128.0",
     "@radix-ui/react-dialog": "^1.0.5",
     "@radix-ui/react-slot": "^1.0.2",
     "@ssrx/plugin-tanstack-router": "latest",

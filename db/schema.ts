@@ -92,3 +92,14 @@ export const TB_Waitlist = pgTable("waitlist", {
     mode: "date",
   }).defaultNow(),
 });
+
+export const TB_Database = pgTable("databases", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  createdAt: timestamp("created_at", {
+    withTimezone: true,
+    mode: "date",
+  })
+    .notNull()
+    .defaultNow(),
+});

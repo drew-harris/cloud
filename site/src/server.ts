@@ -11,6 +11,7 @@ import { db } from "./db";
 import { authMiddleware, authRoutes } from "./auth/authRoutes";
 import { User } from "lucia";
 import { env } from "~/env";
+import { LocalWorkspace } from "@pulumi/pulumi/automation";
 
 declare module "hono" {
   interface Env {

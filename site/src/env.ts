@@ -9,6 +9,8 @@ export const env = createEnv({
     GITHUB_CLIENT_SECRET: z.string().min(1),
     REDIS_PASSWORD: z.string(),
     REDIS_HOST: z.string(),
+    PUL_DATABASE_HOST: z.string(),
+    PUL_DATABASE_PASSWORD: z.string(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,

@@ -22,13 +22,21 @@ export const Route = createFileRoute("/_dashboard/dashboard")({
 
 function Navbar() {
   return (
-    <Link
-      // @ts-ignore //TODO: Fix
-      to="/dashboard"
-      className="min-h-11 px-4 text-xs flex border-b-2 border-black items-center bg-brand-orange"
-    >
-      DHCE
-    </Link>
+    <div className="flex w-full bg-brand-orange justify-between border-b-2 border-black">
+      <Link
+        // @ts-ignore //TODO: Fix
+        to="/dashboard"
+        className="min-h-11 px-4 text-xs flex items-center "
+      >
+        DHCE
+      </Link>
+      <Link
+        to="/dashboard/db"
+        className="min-h-11 px-4 text-xs flex items-center "
+      >
+        Database Admin
+      </Link>
+    </div>
   );
 }
 
@@ -46,7 +54,7 @@ function Sidebar() {
           <Link
             to={`/dashboard/projects/${proj.id}`}
             className={cn(
-              "truncate",
+              "truncate block",
               location.pathname === `/dashboard/projects/${proj.id}` &&
                 "underline",
             )}

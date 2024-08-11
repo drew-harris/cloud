@@ -2,6 +2,7 @@ import { servicesRouter } from "~/trpc/servicesRouter";
 import { publicProcedure, router } from "./base";
 import { projectsRouter } from "~/trpc/projectsRouter";
 import { waitlistRouter } from "~/trpc/waitlistRouter";
+import { databaseRouter } from "~/trpc/databaseRouter";
 
 export const appRouter = router({
   whoAmI: publicProcedure.query(({ ctx }) => {
@@ -10,6 +11,7 @@ export const appRouter = router({
   projects: projectsRouter,
   services: servicesRouter,
   waitlist: waitlistRouter,
+  databases: databaseRouter,
 });
 // Export type router type signature,
 // NOT the router itself.

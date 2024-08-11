@@ -1,14 +1,14 @@
 import { Link, createFileRoute, redirect } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
-  beforeLoad(opts) {
-    if (opts.context.user?.id) {
-      throw redirect({
-        //@ts-ignore
-        to: "/dashboard",
-      });
-    }
-  },
+  // beforeLoad(opts) {
+  //   if (opts.context.user?.id) {
+  //     throw redirect({
+  //       //@ts-ignore
+  //       to: "/dashboard",
+  //     });
+  //   }
+  // },
   component: IndexComponent,
 });
 
@@ -40,7 +40,7 @@ function IndexComponent() {
             <Link className="underline" to="/waitlist">
               Join the waitlist
             </Link>
-            <Link className="underline" to="/waitlist">
+            <Link className="underline" to="/database">
               Get a database
             </Link>
           </div>

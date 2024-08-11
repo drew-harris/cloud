@@ -10,6 +10,7 @@ const prefixes = {
   waitlist: "waitlist",
   projects: "p",
   services: "sr",
+  database: "db",
 } as const;
 
 export function createId(prefix: keyof typeof prefixes): string {
