@@ -18,7 +18,9 @@ FROM base AS site
 COPY --from=build /prod/site /prod/site
 WORKDIR /prod/site
 RUN curl -fsSL https://get.pulumi.com | sh -s -- --install-root "/usr/"
+ENV PATH="/root/.pulumi/bin:$PATH"
 COPY ./scripts/site-entrypoint.sh /prod/site/entrypoint.sh
+RUN chmod +x /prod/site/entrypoint.sh
 EXPOSE 3000
 ENTRYPOINT [ "/prod/site/entrypoint.sh" ]
 CMD ["node", "dist/server.js"]
