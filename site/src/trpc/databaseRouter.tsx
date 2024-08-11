@@ -4,7 +4,6 @@ import { authedProcedure, publicProcedure, router } from "~/trpc/base";
 import { InlineProgramArgs, LocalWorkspace } from "@pulumi/pulumi/automation";
 import { Role } from "@pulumi/postgresql/role";
 import { createId } from "shared";
-import { TRPCError } from "@trpc/server";
 import { TB_Database } from "db";
 import { env } from "~/env";
 import { eq } from "drizzle-orm";
@@ -40,9 +39,17 @@ export const databaseRouter = router({
         });
 
         const schema = new Schema("schema", {
-          name: "private_schema", // unique schema per database
+          name: `${name}_schema`, // unique schema per database
           database: database.name,
-          owner: role.name,
+          // owner: role.name,
+        });
+
+        const revokePublic = new Grant("revoke_public", {
+          database: database.name,
+          role: "public",
+          schema: "public",
+          objectType: "schema",
+          privileges: [],
         });
 
         // Grant access to the private schema for the new user

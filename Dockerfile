@@ -17,10 +17,12 @@ RUN pnpm deploy --filter=worker --prod /prod/worker
 FROM base AS site
 COPY --from=build /prod/site /prod/site
 WORKDIR /prod/site
+RUN curl -fsSL https://get.pulumi.com | sh -s -- --install-root "/usr/"
 EXPOSE 3000
 CMD ["node", "dist/server.js"]
 
 FROM base AS worker
 COPY --from=build /prod/worker /prod/worker
 WORKDIR /prod/worker
+
 CMD ["node", "dist/index.js"]
