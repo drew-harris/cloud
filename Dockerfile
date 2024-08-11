@@ -18,7 +18,11 @@ FROM base AS site
 COPY --from=build /prod/site /prod/site
 WORKDIR /prod/site
 # RUN curl -fsSL https://get.pulumi.com | sh -s -- --install-root "/usr/"
-RUN curl -fsSL https://get.pulumi.com | sh;
+
+RUN apt-get update; \
+  apt-get install -y curl; \
+  curl -fsSL https://get.pulumi.com | sh;
+
 ENV PATH="/root/.pulumi/bin:$PATH"
 COPY ./scripts/site-entrypoint.sh /prod/site/entrypoint.sh
 RUN chmod +x /prod/site/entrypoint.sh
