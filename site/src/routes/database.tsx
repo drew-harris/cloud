@@ -55,6 +55,10 @@ function DatabasePage() {
           <div>Creating database....</div>
         )}
 
+        {submitMutation.status === "error" && (
+          <div>{submitMutation.error.message}</div>
+        )}
+
         {submitMutation.status === "success" && (
           <div>{submitMutation.data.databaseUrl}</div>
         )}

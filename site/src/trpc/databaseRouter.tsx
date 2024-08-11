@@ -25,35 +25,66 @@ export const databaseRouter = router({
       const name = input.name || createRandomLetters(8);
       const password = createRandomLetters(8);
 
+      const [possible] = await ctx.db
+        .select()
+        .from(TB_Database)
+        .where(eq(TB_Database.name, input.name));
+      if (possible) {
+        throw new Error("database already exists");
+      }
+
       const createDatabaseProgram = async () => {
+        // Create role
         const role = new Role("role", {
           name: name,
           password: password,
           inherit: false,
+          superuser: false,
           login: true,
         });
 
+        // Create database
         const database = new Database("database", {
           name,
           owner: role.name,
         });
 
+        // Create schema
         const schema = new Schema("schema", {
-          name: `${name}_schema`, // unique schema per database
+          name: `${name}_schema`,
           database: database.name,
-          // owner: role.name,
         });
 
-        const revokePublic = new Grant("revoke_public", {
-          database: database.name,
-          role: "public",
-          schema: "public",
-          objectType: "schema",
+        // Revoke public schema usage from the new role
+        const revokePublicSchemaUsage = new Grant(
+          "revoke_public_schema_usage",
+          {
+            database: database.name,
+            role: role.name,
+            schema: "public",
+            objectType: "schema",
+            privileges: [],
+          },
+        );
+
+        // Revoke connect on postgres database
+        const revokeConnectPostgres = new Grant("revoke_connect_postgres", {
+          database: "postgres",
+          role: role.name,
+          objectType: "database",
           privileges: [],
         });
 
+        // Grant connect on the new database
+        const grantConnectNewDb = new Grant("grant_connect_new_db", {
+          database: database.name,
+          role: role.name,
+          objectType: "database",
+          privileges: ["CONNECT"],
+        });
+
         // Grant access to the private schema for the new user
-        const grantSchemaAccess = new Grant("grantSchemaAccess", {
+        const grantSchemaAccess = new Grant("grant_schema_access", {
           objectType: "schema",
           database: database.name,
           privileges: ["USAGE", "CREATE"],
@@ -62,7 +93,7 @@ export const databaseRouter = router({
         });
 
         // Grant table-level access within the private schema
-        const grantTableAccess = new Grant("grantTableAccess", {
+        const grantTableAccess = new Grant("grant_table_access", {
           objectType: "table",
           database: database.name,
           privileges: ["SELECT", "INSERT", "UPDATE", "DELETE"],
