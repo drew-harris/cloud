@@ -8,7 +8,6 @@ export const Route = createFileRoute("/database")({
 
 function DatabasePage() {
   const [nameText, setEmailText] = useState("");
-  const [databaseUrl, setDatabaseUrl] = useState("");
   const submitMutation = trpc.databases.create.useMutation({
     onError(error, variables, context) {
       console.error(error);
